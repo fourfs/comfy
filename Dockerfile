@@ -8,8 +8,11 @@ RUN apt-get update && apt-get install -y \
     python3-pip
 
 RUN pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+
+ARG comfy_tag
+
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git
-RUN cd /app/ComfyUI && git checkout v0.3.10
+RUN cd /app/ComfyUI && git checkout $comfy_tag
 RUN pip3 install -r /app/ComfyUI/requirements.txt
 
 EXPOSE 8848
